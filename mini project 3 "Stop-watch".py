@@ -5,9 +5,14 @@ count = 0
 
 # define helper function format that converts time
 # in tenths of seconds into formatted string A:BC.D
-#def format(t):
-    #pass
-    
+def format(t):
+    a = t / 600
+    c = int(t / 10) % 60
+    d = t % 10
+    if c < 10:
+        b = 0
+    else: b = ""
+    return str(a)+str(":")+str(b)+str(c)+str(".")+str(d)    
 # define event handlers for buttons; "Start", "Stop", "Reset"
 def start():
     timer.start()
@@ -25,7 +30,7 @@ def tick():
 
 # define draw handler
 def draw_handler(frame):
-    frame.draw_text(str(count),(100,100),20,"White")
+    frame.draw_text(str(format(count)),(100,100),20,"White")
     
 # create frame
 frame = simplegui.create_frame("Stop-watch", 200, 200)
